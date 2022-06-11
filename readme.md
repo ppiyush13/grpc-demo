@@ -1,4 +1,4 @@
-# grpc-demo
+# gRPC-demo
 
 Learning gRPC
 

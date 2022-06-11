@@ -14,5 +14,5 @@ message NewsList {
 }
 
 service NewsService {
-    rpc getAllNews(Empty) returns (NewsList) {}
+    rpc GetAllNews(Empty) returns (NewsList) {}
 }

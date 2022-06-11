@@ -1,20 +1,7 @@
-const grpc = require("@grpc/grpc-js");
-const protoLoader = require("@grpc/proto-loader");
+const { Server, ServerCredentials } = require("@grpc/grpc-js");
+const { NewsService } = require("./NewsService");
 
-const protoPath = "./news.proto";
-
-const options = {
-  keepCase: true,
-  longs: String,
-  enums: String,
-  defaults: true,
-  oneofs: true,
-};
-
-const packageDefinition = protoLoader.loadSync(protoPath, options);
-const newsProto = grpc.loadPackageDefinition(packageDefinition);
-
-const server = new grpc.Server();
+const server = new Server();
 const news = [
   {
     id: 1,
@@ -30,15 +17,15 @@ const news = [
   },
 ];
 
-server.addService(newsProto.NewsService.service, {
+server.addService(NewsService.service, {
   getAllNews(_, cb) {
-    cb(null, news);
+    cb(null, { news });
   },
 });
 
 server.bindAsync(
   "127.0.0.1:13001",
-  grpc.ServerCredentials.createInsecure(),
+  ServerCredentials.createInsecure(),
   (err, port) => {
     console.log("Server started on port:", port);
     server.start();
