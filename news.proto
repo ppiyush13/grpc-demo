@@ -13,6 +13,12 @@ message NewsList {
     repeated News news = 1;
 }
 
+message NewsId {
+    string id = 1;
+}
+
 service NewsService {
     rpc GetAllNews(Empty) returns (NewsList) {}
+    rpc AddNews(News) returns (NewsList) {}
+    rpc DeleteNews(NewsId) returns (NewsList) {} 
 }

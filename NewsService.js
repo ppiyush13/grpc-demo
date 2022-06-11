@@ -1,8 +1,8 @@
-const { loadPackageDefinition } = require("@grpc/grpc-js");
-const { loadSync } = require("@grpc/proto-loader");
+const { loadPackageDefinition } = require('@grpc/grpc-js');
+const { loadSync } = require('@grpc/proto-loader');
 
 /* news proto path */
-const protoPath = "./news.proto";
+const protoPath = './news.proto';
 
 const options = {
   keepCase: true,
